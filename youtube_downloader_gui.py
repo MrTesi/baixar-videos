@@ -4,6 +4,34 @@ from tkinter import filedialog, messagebox, ttk
 from PIL import Image, ImageTk
 import requests
 import yt_dlp
+import sys
+
+# URL do seu repositório
+REPO_URL = "https://raw.githubusercontent.com/MrTesi/video-downloader/main/youtube_downloader_gui.py"
+
+import os
+import sys
+import requests
+
+# URL do seu repositório
+REPO_URL = "https://raw.githubusercontent.com/SEU_USUARIO/video-downloader/main/youtube_downloader_gui.py"
+
+def verificar_atualizacao():
+    """Baixa a versão mais recente do código e substitui o script atual."""
+    try:
+        response = requests.get(REPO_URL)
+        if response.status_code == 200:
+            with open(__file__, "w", encoding="utf-8") as f:
+                f.write(response.text)
+            print("Código atualizado! Reinicie o script para aplicar as mudanças.")
+            sys.exit()
+    except Exception as e:
+        print(f"Erro ao verificar atualização: {e}")
+
+# Executa a verificação antes de rodar o programa
+verificar_atualizacao()
+
+print("ola mundo") 
 
 def escolher_diretorio():
     diretorio = filedialog.askdirectory()
