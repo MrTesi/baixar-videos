@@ -8,7 +8,7 @@ import sys
 import subprocess
 
 def atualizar_codigo():
-    repo_url = "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPOSITORIO/main/youtube_downloader_gui.py"
+    repo_url = https://raw.githubusercontent.com/MrTesi/baixar-videos/refs/heads/main/youtube_downloader_gui.py
     try:
         response = requests.get(repo_url)
         if response.status_code == 200:
