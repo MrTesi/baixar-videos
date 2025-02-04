@@ -14,20 +14,19 @@ def atualizar_codigo():
         if response.status_code == 200:
             novo_codigo = response.text.strip()
             caminho_arquivo = os.path.abspath(sys.argv[0])
-
+            
             if os.path.exists(caminho_arquivo):
                 with open(caminho_arquivo, "r", encoding="utf-8") as file:
                     codigo_atual = file.read().strip()
-
+                
                 if novo_codigo != codigo_atual:
                     with open(caminho_arquivo, "w", encoding="utf-8") as file:
                         file.write(novo_codigo)
-
+                    
                     messagebox.showinfo("Atualização", "Código atualizado! Reinicie o programa para aplicar as mudanças.")
                     sys.exit()
     except Exception as e:
         messagebox.showerror("Erro", f"Falha ao verificar atualização: {e}")
-
 
 atualizar_codigo()
 
@@ -124,7 +123,7 @@ def baixar_video():
 
 # Criando a janela principal
 root = tk.Tk()
-root.title("Video Downloader - Atualizado")
+root.title("Video Downloader")
 root.geometry("600x600")
 root.configure(bg="#2E2E2E")
 
