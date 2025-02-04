@@ -123,7 +123,7 @@ def baixar_video():
 
 # Criando a janela principal
 root = tk.Tk()
-root.title("Video Downloader")
+root.title("Download De Videos")
 root.geometry("600x600")
 root.configure(bg="#2E2E2E")
 
