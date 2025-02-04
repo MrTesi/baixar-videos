@@ -5,26 +5,21 @@ from PIL import Image, ImageTk
 import requests
 import yt_dlp
 import sys
+import subprocess
 
-# URL do seu repositório
-REPO_URL = "https://raw.githubusercontent.com/MrTesi/baixar-videos/refs/heads/main/youtube_downloader_gui.py"
-
-def verificar_atualizacao():
-    """Baixa a versão mais recente do código e substitui o script atual."""
+def atualizar_codigo():
+    repo_url = "https://raw.githubusercontent.com/MrTesi/Baixar Videos Youtube/main/youtube_downloader_gui.py"
     try:
-        response = requests.get(REPO_URL)
+        response = requests.get(repo_url)
         if response.status_code == 200:
-            with open(__file__, "w", encoding="utf-8") as f:
-                f.write(response.text)
-            print("Código atualizado! Reinicie o script para aplicar as mudanças.")
+            with open(sys.argv[0], "w", encoding="utf-8") as file:
+                file.write(response.text)
+            messagebox.showinfo("Atualização", "Código atualizado! Reinicie o programa para aplicar as mudanças.")
             sys.exit()
     except Exception as e:
-        print(f"Erro ao verificar atualização: {e}")
+        messagebox.showerror("Erro", f"Falha ao verificar atualização: {e}")
 
-# Executa a verificação antes de rodar o programa
-verificar_atualizacao()
-
-print("ola mundo") 
+atualizar_codigo()
 
 def escolher_diretorio():
     diretorio = filedialog.askdirectory()
@@ -33,22 +28,22 @@ def escolher_diretorio():
         entry_diretorio.insert(0, diretorio)
 
 def verificar_suporte():
-    url = entry_url.get().strip()
+    url = entry_url.get()
     if not url:
-        suporte_label.config(text="", fg="white")
-        return False
+        suporte_label.config(text="")
+        return
     
     try:
-        with yt_dlp.YoutubeDL({'quiet': True, 'no_warnings': True}) as ydl:
+        with yt_dlp.YoutubeDL() as ydl:
             info = ydl.extract_info(url, download=False)
             if info:
                 suporte_label.config(text="✔", fg="green")
                 mostrar_thumbnail(info.get('thumbnail', ''))
                 return True
-    except yt_dlp.utils.DownloadError:
-        suporte_label.config(text="✘", fg="red")
-        mostrar_thumbnail(None)
-        return False
+            else:
+                suporte_label.config(text="✘", fg="red")
+                mostrar_thumbnail(None)
+                return False
     except:
         suporte_label.config(text="✘", fg="red")
         mostrar_thumbnail(None)
