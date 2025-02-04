@@ -9,13 +9,6 @@ import sys
 # URL do seu repositório
 REPO_URL = "https://raw.githubusercontent.com/MrTesi/baixar-videos/refs/heads/main/youtube_downloader_gui.py"
 
-import os
-import sys
-import requests
-
-# URL do seu repositório
-REPO_URL = "https://raw.githubusercontent.com/SEU_USUARIO/video-downloader/main/youtube_downloader_gui.py"
-
 def verificar_atualizacao():
     """Baixa a versão mais recente do código e substitui o script atual."""
     try:
