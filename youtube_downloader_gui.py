@@ -7,7 +7,7 @@ import yt_dlp
 import sys
 
 # URL do seu repositório
-REPO_URL = "https://raw.githubusercontent.com/MrTesi/video-downloader/main/youtube_downloader_gui.py"
+REPO_URL = "https://raw.githubusercontent.com/MrTesi/baixar-videos/refs/heads/main/youtube_downloader_gui.py"
 
 import os
 import sys
