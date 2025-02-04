@@ -8,24 +8,23 @@ import sys
 import subprocess
 
 def atualizar_codigo():
-    repo_url = "https://raw.githubusercontent.com/MrTesi/baixar-videos/refs/heads/main/youtube_downloader_gui.py"
-    local_file = sys.argv[0]
-
+    repo_url = "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPOSITORIO/main/youtube_downloader_gui.py"
     try:
         response = requests.get(repo_url)
         if response.status_code == 200:
-            novo_codigo = response.text
+            novo_codigo = response.text.strip()
+            caminho_arquivo = os.path.abspath(sys.argv[0])
 
-            # Lendo o código atual para comparar com o novo
-            with open(local_file, "r", encoding="utf-8") as file:
-                codigo_atual = file.read()
+            if os.path.exists(caminho_arquivo):
+                with open(caminho_arquivo, "r", encoding="utf-8") as file:
+                    codigo_atual = file.read().strip()
 
-            # Se o código for diferente, atualizar
-            if novo_codigo != codigo_atual:
-                with open(local_file, "w", encoding="utf-8") as file:
-                    file.write(novo_codigo)
-                messagebox.showinfo("Atualização", "Código atualizado! Reinicie o programa para aplicar as mudanças.")
-                sys.exit()
+                if novo_codigo != codigo_atual:
+                    with open(caminho_arquivo, "w", encoding="utf-8") as file:
+                        file.write(novo_codigo)
+
+                    messagebox.showinfo("Atualização", "Código atualizado! Reinicie o programa para aplicar as mudanças.")
+                    sys.exit()
     except Exception as e:
         messagebox.showerror("Erro", f"Falha ao verificar atualização: {e}")
 
