@@ -1,5 +1,7 @@
 import yt_dlp
 
+print("🚀 Nova versão do código disponível!")
+
 def baixar_video_1080p(url, caminho_saida='./'):
     try:
         # Configurações do yt-dlp
