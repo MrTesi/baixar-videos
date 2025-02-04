@@ -19,7 +19,7 @@ def atualizar_codigo():
                 with open(caminho_arquivo, "r", encoding="utf-8") as file:
                     codigo_atual = file.read().strip()
                 
-                if novo_codigo != codigo_atual:
+                if novo_codigo.replace("\r", "") != codigo_atual.replace("\r", ""):
                     with open(caminho_arquivo, "w", encoding="utf-8") as file:
                         file.write(novo_codigo)
                     
